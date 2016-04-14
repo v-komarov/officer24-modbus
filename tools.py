@@ -68,6 +68,54 @@ def SaveConfig(self):
 
 
 def Read2bytes(result):
-        data = (hex(result)+"0000")[2:6]
-        return data
+        data = ("0000"+(hex(result))[2:])[-4:]
+        a = data[0:2]
+        b = data[2:4]
+        a = list(data[0:2])
+        b = list(data[2:4])
+        a.reverse()
+        b.reverse()
+        result = "".join(a)+"".join(b)
+        return result
 
+
+
+def Write16key(result):
+        r = StrRevers(result)
+
+        a = list(r[0:2])
+        b = list(r[2:4])
+        c = list(r[4:6])
+        d = list(r[6:8])
+        e = list(r[8:10])
+        f = list(r[10:12])
+        g = list(r[12:14])
+        h = list(r[14:16])
+
+        a.reverse()
+        b.reverse()
+        c.reverse()
+        d.reverse()
+        e.reverse()
+        f.reverse()
+        g.reverse()
+        h.reverse()
+
+        first = int("".join(a)+"".join(b),16)
+        second = int("".join(c)+"".join(d),16)
+        third = int("".join(e)+"".join(f),16)
+        fourth = int("".join(g)+"".join(h),16)
+
+        result = [first,second,third,fourth]
+
+        return result
+
+
+
+
+
+def StrRevers(result):
+        a = list(result)
+        a.reverse()
+        b = "".join(a)
+        return b

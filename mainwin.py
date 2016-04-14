@@ -14,7 +14,7 @@ from    gsmeth.gsmsetting   import  GSMSetting
 from    gsmeth.ethsetting   import  EthSetting
 from    checkconnect        import  CheckConnect
 from    tools import SaveConfig
-from    userskeys   import  Keys
+from    userskeys   import  Keys,MasterKey
 
 
 #----------------------------------------------------------------------
@@ -27,6 +27,9 @@ ID_GSM = wx.NewId()
 ID_Eth = wx.NewId()
 ID_SaveConf = wx.NewId()
 ID_Keys = wx.NewId()
+ID_MasterKey = wx.NewId()
+ID_FireZone1 = wx.NewId()
+ID_FireZone2 = wx.NewId()
 
 
 
@@ -80,18 +83,20 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 
         menu2 = wx.Menu()
-        menu2.Append(ID_GSM, "GSM")
-        menu2.Append(ID_Eth, "Ethernet")
+        menu2.Append(ID_GSM, u"GSM")
+        menu2.Append(ID_Eth, u"Ethernet")
         menubar.Append(menu2, u"Сетевые настройки")
 
 
         menu3 = wx.Menu()
-#        menu3.Append(ID_PL_OUT, "Выгрузить список для \"Платёжки\"")
+        menu3.Append(ID_FireZone1, "Пожарная зона 1")
+        menu3.Append(ID_FireZone2, "Пожарная зона 2")
         menubar.Append(menu3, u"Пожарные зоны")
 
 
         menu4 = wx.Menu()
-        menu4.Append(ID_Keys, "Ключи")
+        menu4.Append(ID_Keys, u"Ключи")
+        menu4.Append(ID_MasterKey, u"Мастер ключ")
         menubar.Append(menu4, u"Пользователи")
 
 
@@ -122,6 +127,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
         self.Bind(wx.EVT_MENU, self.CheckConn, id=ID_Connect)
         self.Bind(wx.EVT_MENU, self.SaveConf, id=ID_SaveConf)
         self.Bind(wx.EVT_MENU, self.UserKeys, id=ID_Keys)
+        self.Bind(wx.EVT_MENU, self.Masterkey, id=ID_MasterKey)
 
 
 
@@ -220,6 +226,11 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
         child.Activate()
 
 
+
+#### Мастер ключ
+    def Masterkey(self, evt):
+        child = MasterKey(self)
+        child.Activate()
 
 
 
