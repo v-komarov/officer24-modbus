@@ -4,7 +4,7 @@ import  wx, wx.aui
 import  shelve
 
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
-from    tools             import    Registr2ip,Ip2registr
+from    tools import    Registr2ip,Ip2registr
 
 
 CFG_FILE = 'cfg.data'
