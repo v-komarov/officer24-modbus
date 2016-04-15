@@ -35,7 +35,7 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
 
 
         self.sc = wx.SpinCtrl(self, -1, "", (30, 50))
-        self.sc.SetRange(1,8)
+        self.sc.SetRange(0,8)
         #sc.SetValue(5)
 
 
@@ -87,41 +87,30 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
         client.connect()
 
 
-        ### IP адрес сервера
-        add_string = self.text_ctrl_3.GetValue()
-        rq=client.write_registers(10,Ip2registr(add_string),unit=1)
-
-
-        ### Порт сервера
-        port_string = self.text_ctrl_4.GetValue()
-        port = int(port_string)
-        rq=client.write_registers(15,[port],unit=1)
-
-
-        ### Шлюз
-        add_string = self.text_ctrl_5.GetValue()
-        rq=client.write_registers(148,Ip2registr(add_string),unit=1)
-
-        ### Использовать Etherner
-        if self.cb1.GetValue():
-            rq=client.write_registers(146,[1],unit=1)
-        else:
-            rq=client.write_registers(146,[0],unit=1)
-
-        ### Использовать DHCP
         if self.cb2.GetValue():
-            rq=client.write_registers(147,[1],unit=1)
+            b1 = '1'
         else:
-            rq=client.write_registers(147,[0],unit=1)
+            b1 = '0'
+        if self.cb1.GetValue():
+            b2 = '1'
+        else:
+            b2 = '0'
+        if self.cb3.GetValue():
+            b3 = '1'
+        else:
+            b3 = '0'
+
+        b = "00000%s%s%s" % (b3,b2,b1)
+
+        c = bin(self.sc.GetValue())
+
+        #print c+b
+
+        d = int(c+b,2)
 
 
-        ### IP адрес устройства
-        add_string = self.text_ctrl_1.GetValue()
-        rq=client.write_registers(152,Ip2registr(add_string),unit=1)
+        rq=client.write_registers(1115,[d],unit=1)
 
-        ### Маска устройства
-        add_string = self.text_ctrl_2.GetValue()
-        rq=client.write_registers(150,Ip2registr(add_string),unit=1)
 
         client.close()
 
@@ -140,8 +129,37 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
 
         rr = client.read_holding_registers(address=1115,count=1,unit=1)
         result = rr.registers
-        print result
 
+
+
+        a = (bin(result[0]))[2:]
+        b = a[-8:]
+        c = a[-16:-8]
+
+        #print a,b,c
+
+        ### Пожарная зона в разделе
+        c1 = int(c,2)
+        ## Пожарная зона вкл
+        b1 = b[-1]
+        ## Авт. сброс пожарной зоны
+        b2 = b[-2]
+        ## Двойная сработка пож.
+        b3 = b[-3]
+
+        self.sc.SetValue(c1)
+        if b1 == '1':
+            self.cb2.SetValue(True)
+        else:
+            self.cb2.SetValue(False)
+        if b2 == '1':
+            self.cb1.SetValue(True)
+        else:
+            self.cb1.SetValue(False)
+        if b3 == '1':
+            self.cb3.SetValue(True)
+        else:
+            self.cb3.SetValue(False)
 
         client.close()
 
@@ -163,8 +181,7 @@ class FireZone2(wx.aui.AuiMDIChildFrame):
 
 
         self.sc = wx.SpinCtrl(self, -1, "", (30, 50))
-        self.sc.SetRange(1,8)
-        #sc.SetValue(5)
+        self.sc.SetRange(0,8)
 
 
         self.cb1 = wx.CheckBox(self, -1, "")
@@ -201,4 +218,92 @@ class FireZone2(wx.aui.AuiMDIChildFrame):
         self.SetSizer(sizer)
 
         wx.CallAfter(self.Layout)
+
+        self.Bind(wx.EVT_BUTTON, self.Read, self.btn)
+        self.Bind(wx.EVT_BUTTON, self.Write, self.btn1)
+
+
+
+
+
+    def Write(self,event):
+
+
+        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client.connect()
+
+
+        if self.cb2.GetValue():
+            b1 = '1'
+        else:
+            b1 = '0'
+        if self.cb1.GetValue():
+            b2 = '1'
+        else:
+            b2 = '0'
+        if self.cb3.GetValue():
+            b3 = '1'
+        else:
+            b3 = '0'
+
+        b = "00000%s%s%s" % (b3,b2,b1)
+
+        c = bin(self.sc.GetValue())
+
+        #print c+b
+
+        d = int(c+b,2)
+
+
+        rq=client.write_registers(1116,[d],unit=1)
+
+
+        client.close()
+
+
+
+
+    def Read(self, event):
+
+
+        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client.connect()
+
+
+        rr = client.read_holding_registers(address=1116,count=1,unit=1)
+        result = rr.registers
+
+
+
+        a = (bin(result[0]))[2:]
+        b = a[-8:]
+        c = a[-16:-8]
+
+        #print a,b,c
+
+        ### Пожарная зона в разделе
+        c1 = int(c,2)
+        ## Пожарная зона вкл
+        b1 = b[-1]
+        ## Авт. сброс пожарной зоны
+        b2 = b[-2]
+        ## Двойная сработка пож.
+        b3 = b[-3]
+
+        self.sc.SetValue(c1)
+        if b1 == '1':
+            self.cb2.SetValue(True)
+        else:
+            self.cb2.SetValue(False)
+        if b2 == '1':
+            self.cb1.SetValue(True)
+        else:
+            self.cb1.SetValue(False)
+        if b3 == '1':
+            self.cb3.SetValue(True)
+        else:
+            self.cb3.SetValue(False)
+
+        client.close()
+
 
