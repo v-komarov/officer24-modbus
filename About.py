@@ -9,23 +9,24 @@ from wx.lib.wordwrap import wordwrap
 
 
 
-class Info(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent, -1)
+
+def Info(self):
 
 	info = wx.AboutDialogInfo()
-	info.Name = "Officer+"
+	info.Name = u"Утилита программирования\nППКОП \"Офицер\" 04"
 	info.Version = "0.9"
 	info.Copyright = "(C) 2016 ГПБ Ураган"
 	info.Description = wordwrap(
-		"A \"hello world\" program is a software program that prints out "
-		"\"Hello world!\" on a display device. It is used in many introductory "
-		"tutorials for teaching a programming language."
+		u"Основное назначение:\n"
+		u"Программирование панели по протоколу modbus."
 
-		"\n\nSuch a program is typically one of the simplest programs possible "
-		"in a computer language. A \"hello world\" program can be a useful "
-		"sanity test to make sure that a language's compiler, development "
-		"environment, and run-time environment are correctly installed.",
+		u"\n\nИспользуемые библиотеки:\n"
+		u"wxPython(ver 3.0.2.0)\n"
+		u"Twisted(ver 16.0.0)\n"
+		u"pymodbus(ver 1.2.0)\n"
+		u"pyserial(ver 2.7)\n"
+		u"zope.interface(ver 4.1.2)\n"
+		u"",
 		350, wx.ClientDC(self))
 	info.WebSite = ("http://www.officer24.ru", "Officer")
 	info.Developers = [ "Vladimir Komarov",
