@@ -44,9 +44,9 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.btn1 = wx.Button(self, wx.ID_SAVE)
 
         self.sc2.SetRange(50,1000)
-        self.sc2.SetRange(0,60)
-        self.sc2.SetRange(5,90)
-        self.sc2.SetRange(0,98)
+        self.sc3.SetRange(0,3600)
+        self.sc4.SetRange(5,90)
+        self.sc5.SetRange(0,98)
 
         grid_sizer_1 = wx.FlexGridSizer(8, 2, 1, 0)
 
@@ -144,6 +144,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
 
         rr = client.read_holding_registers(address=1138,count=3,unit=1)
         result = rr.registers
+
 
         self.sc3.SetValue(result[0])
         self.sc4.SetValue(result[1])
