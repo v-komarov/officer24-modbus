@@ -13,9 +13,6 @@ from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 
 
 CFG_FILE = 'cfg.data'
-db = shelve.open(CFG_FILE)
-dev = db['dev']
-db.close()
 
 
 
@@ -27,6 +24,9 @@ class Keys(wx.aui.AuiMDIChildFrame):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Ключи")
 
 
+        db = shelve.open(CFG_FILE)
+        self.dev = db['dev']
+        db.close()
 
 
 
@@ -79,7 +79,7 @@ class Keys(wx.aui.AuiMDIChildFrame):
             data_part.append(int(item2.GetText()))
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
         client.connect()
 
         ### Ключи пользователей
@@ -149,7 +149,7 @@ class Keys(wx.aui.AuiMDIChildFrame):
 
 
     def ReadKey(self,event):
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
 
         rr = client.read_holding_registers(address=2064,count=4,unit=1)
         result = rr.registers
@@ -187,6 +187,9 @@ class List(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
         self.SetColumnWidth(2, 250)
 
 
+        db = shelve.open(CFG_FILE)
+        self.dev = db['dev']
+        db.close()
 
 
 
@@ -197,7 +200,7 @@ class List(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
         #### --- Массив идентификаторов строк ---
         self.kod_record = []
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
         client.connect()
 
 
@@ -304,6 +307,9 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Мастер ключ")
 
 
+        db = shelve.open(CFG_FILE)
+        self.dev = db['dev']
+        db.close()
 
 
 
@@ -345,7 +351,7 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
 
 
     def Read(self, evt):
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
 
         rr = client.read_holding_registers(address=158,count=4,unit=1)
         result = rr.registers
@@ -363,7 +369,7 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
     def Write(self,event):
         result = self.text_ctrl_1.GetValue()
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
         rq=client.write_registers(158,Write16key(result),unit=1)
 
         client.close()
@@ -372,7 +378,7 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
 
 
     def ReadKey(self,event):
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
 
         rr = client.read_holding_registers(address=2064,count=4,unit=1)
         result = rr.registers
