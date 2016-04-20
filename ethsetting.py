@@ -8,9 +8,6 @@ import  shelve
 
 
 CFG_FILE = 'cfg.data'
-db = shelve.open(CFG_FILE)
-dev = db['dev']
-db.close()
 
 
 
@@ -20,6 +17,9 @@ class EthSetting(wx.aui.AuiMDIChildFrame):
     def __init__(self, parent):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Ethernet")
 
+        db = shelve.open(CFG_FILE)
+        self.dev = db['dev']
+        db.close()
 
 
         self.label_1 = wx.StaticText(self, wx.ID_ANY, (u"IP устройства"))
@@ -91,7 +91,7 @@ class EthSetting(wx.aui.AuiMDIChildFrame):
     def Write(self,event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
         client.connect()
 
 
@@ -142,7 +142,7 @@ class EthSetting(wx.aui.AuiMDIChildFrame):
     def Read(self, event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
         client.connect()
 
 
