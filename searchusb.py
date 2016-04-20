@@ -5,7 +5,7 @@ import usb
 import sys
 import shelve
 import commands
-
+from serial.tools import list_ports
 
 
 CFG_FILE = 'cfg.data'
@@ -136,18 +136,11 @@ class List(wx.ListCtrl):
 
 def DevUsb():
 
-    data = commands.getoutput('python -m serial.tools.list_ports').split()[:-3]
+    result = []
+    data = list_ports.comports()
+    for item in data:
+        result.append(item[0])
 
-#    for dev in usb.core.find(find_all=True):
-        #print " idVendor: %d (%s)" % (dev.idVendor, hex(dev.idVendor))
-        #print
-# " idProduct: %d (%s)" % (dev.idProduct, hex(dev.idProduct))
-#        d = {}
-#        d['dev'] = '%s' % dev.idVendor
-#        data.append(d)
-
-
-    return data
-
+    return result
 
 
