@@ -1,7 +1,7 @@
 #coding:utf-8
 
 import wx
-import  shelve
+import dbhash
 
 
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
@@ -14,7 +14,7 @@ CFG_FILE = 'cfg.data'
 
 
 def GetDev():
-    db = shelve.open(CFG_FILE)
+    db = dbhash.open(CFG_FILE,'c')
     if db.has_key('dev') == False:
         db['dev'] = u''
 
@@ -24,10 +24,9 @@ def GetDev():
     return dev
 
 
-
 def SetDev(dev):
 
-    db = shelve.open(CFG_FILE)
+    db = dbhash.open(CFG_FILE,'c')
     db['dev'] = dev
     db.close()
 
@@ -79,7 +78,7 @@ def SaveConfig(self):
 
 
     try:
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ModbusClient(method='rtu', port='%s' % GetDev(), baudrate='115200', timeout=1)
         client.connect()
         rq=client.write_registers(2048,[1],unit=1)
         client.close()
@@ -149,3 +148,28 @@ def StrRevers(result):
         a.reverse()
         b = "".join(a)
         return b
+
+
+
+### Определение адреса бита
+def GetAddressBit(bits):
+
+    a = "0"*8 + bits
+    b = 8
+    for item in list(a[-8:]):
+        if item == "1":
+            return b
+        b = b - 1
+
+    return 0
+
+
+### Установка по адресу бита
+def SetAddressBit(bits):
+
+    a = ["0","0","0","0","0","0","0","0"]
+    if bits != 0:
+        a[-(bits)] = "1"
+
+    return "".join(a)
+
