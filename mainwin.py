@@ -1,21 +1,20 @@
 #coding:utf-8
 
 
-import  wx,wx.aui
-import	os
-import	time
-import	shelve
 
-
+import wx
+import wx.aui
 
 import	About
-from	usbtool.searchusb	import	ListUsb
-from    gsmeth.gsmsetting   import  GSMSetting
-from    gsmeth.ethsetting   import  EthSetting
+from    additions   import  Settings
 from    checkconnect        import  CheckConnect
-from    tools import SaveConfig
+from    ethsetting import  EthSetting
+from    firezones   import  FireZone1,FireZone2
+from    gsmsetting import  GSMSetting
+from    outputs     import  OutPuts
+from    searchusb import	ListUsb
+from    tools import SaveConfig, GetDev, SetDev
 from    userskeys   import  Keys,MasterKey
-
 
 #----------------------------------------------------------------------
 ID_Exit = wx.NewId()
@@ -30,16 +29,10 @@ ID_Keys = wx.NewId()
 ID_MasterKey = wx.NewId()
 ID_FireZone1 = wx.NewId()
 ID_FireZone2 = wx.NewId()
-
-
-
-### --- Конфигурационный файл ---
-CFG_FILE = 'cfg.data'
-db = shelve.open(CFG_FILE)
-if db.has_key('dev') == False:
-	db['dev'] = ''
-db.close()
-
+ID_Additions = wx.NewId()
+ID_OutPuts = wx.NewId()
+ID_Man = wx.NewId()
+ID_Zones = wx.NewId()
 
 
 
@@ -49,14 +42,10 @@ db.close()
 
 class MyParentFrame(wx.aui.AuiMDIParentFrame):
     def __init__(self):
-        wx.aui.AuiMDIParentFrame.__init__(self, None, 1, u"Программирования панели", size=(1200,800),style=wx.FRAME_NO_WINDOW_MENU)
+        wx.aui.AuiMDIParentFrame.__init__(self, None, 1, u"Программирование ППКОП \"Офицер\" 04", size=(1200,800),style=wx.FRAME_NO_WINDOW_MENU|wx.DEFAULT_FRAME_STYLE)
 
 
-#class MyParentFrame(wx.MDIParentFrame):
-#    def __init__(self):
-#        wx.MDIParentFrame.__init__(self, None, 1, u"Программирования панели", size=(1200,800))
-
-    	self.MId=wx.NewId()
+        self.MId=wx.NewId()
 
         self.winCount = 0
 
@@ -67,16 +56,14 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 
         menu.Append(ID_ScanUSB, u"USB-RS485")
+        menu.Append(ID_Man, u"Указать COM порт вручную")
         menu.Append(ID_Connect, u"Проверка связи")
         menu.AppendSeparator()
         menu.Append(ID_SaveConf, u"Запись в ПЗУ")
         menu.AppendSeparator()
-	menu.Append(ID_Close, u"Закрыть все")
-#	menu.Append(ID_TPList, "Тарифы")
+        menu.Append(ID_Close, u"Закрыть все")
         menu.AppendSeparator()
-#	menu.Append(ID_UlList, "Справочник улиц")
-#        menu.AppendSeparator()
-	menu.Append(ID_Exit, u"Выход")
+        menu.Append(ID_Exit, u"Выход")
         menubar = wx.MenuBar()
         menubar.Append(menu, u"Настройка панели")
 
@@ -89,8 +76,8 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 
         menu3 = wx.Menu()
-        menu3.Append(ID_FireZone1, "Пожарная зона 1")
-        menu3.Append(ID_FireZone2, "Пожарная зона 2")
+        menu3.Append(ID_FireZone1, u"Пожарная зона 1")
+        menu3.Append(ID_FireZone2, u"Пожарная зона 2")
         menubar.Append(menu3, u"Пожарные зоны")
 
 
@@ -101,18 +88,18 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 
         menu5 = wx.Menu()
-#        menu5.Append(ID_About, "О программе")
-        menubar.Append(menu5, u"Основные выхода")
+        menu5.Append(ID_OutPuts, u"Выходы")
+        menu5.Append(ID_Zones, u"Зоны")
+        menubar.Append(menu5, u"Основные")
 
 
         menu6 = wx.Menu()
-#        menu5.Append(ID_About, "О программе")
-        menubar.Append(menu6, u"Дополнительные настройки")
+        menu6.Append(ID_Additions, u"Дополнительне настройки")
+        menu6.AppendSeparator()
+        menu6.Append(ID_About, u"О программе")
+        menubar.Append(menu6, u"Дополнительно")
 
 
-        menu7 = wx.Menu()
-        menu7.Append(ID_About, u"About")
-        menubar.Append(menu7, u"О программе")
 
 	self.SetMenuBar(menubar)
 
@@ -128,17 +115,18 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
         self.Bind(wx.EVT_MENU, self.SaveConf, id=ID_SaveConf)
         self.Bind(wx.EVT_MENU, self.UserKeys, id=ID_Keys)
         self.Bind(wx.EVT_MENU, self.Masterkey, id=ID_MasterKey)
-
+        self.Bind(wx.EVT_MENU, self.FireZ1, id=ID_FireZone1)
+        self.Bind(wx.EVT_MENU, self.FireZ2, id=ID_FireZone2)
+        self.Bind(wx.EVT_MENU, self.Outputs, id=ID_OutPuts)
+        self.Bind(wx.EVT_MENU, self.Setting, id=ID_Additions)
+        self.Bind(wx.EVT_MENU, self.Man, id=ID_Man)
 
 
 
 
 	def ShowVidPid(self):
-		db = shelve.open(CFG_FILE)
-		dev = db['dev']
-		db.close()
 
-		self.SetStatusText(u'dev: %s' % (dev), 0)
+		self.SetStatusText(u'dev: %s' % (GetDev()), 0)
 
 	ShowVidPid(self)
 
@@ -152,11 +140,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 		dlg = ListUsb(self,-1,u"Список устройств USB", size=(450,300), style = wx.DEFAULT_DIALOG_STYLE)
 		dlg.ShowModal()
 
-		db = shelve.open(CFG_FILE)
-		dev = db['dev']
-		db.close()
-
-		self.SetStatusText(u'dev: %s' % (dev), 0)
+		self.SetStatusText(u'dev: %s' % (GetDev()), 0)
 
 
 
@@ -180,10 +164,6 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
         evt.Skip()
 
-
-#	win = self.GetActiveChild()
-#	if win:
-#	    win.Destroy()
 
 
 
@@ -231,6 +211,53 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
     def Masterkey(self, evt):
         child = MasterKey(self)
         child.Activate()
+
+
+
+
+#### Пожарная зона 1
+    def FireZ1(self, evt):
+        child = FireZone1(self)
+        child.Activate()
+
+
+
+
+#### Пожарная зона 2
+    def FireZ2(self, evt):
+        child = FireZone2(self)
+        child.Activate()
+
+
+
+
+#### Выходы
+    def Outputs(self, evt):
+        child = OutPuts(self)
+        child.Activate()
+
+
+
+
+#### Дополнительные настройки
+    def Setting(self, evt):
+        child = Settings(self)
+        child.Activate()
+
+
+
+
+#### Указание Com порта вручную
+    def Man(self, evt):
+        dev = ''
+        dlg = wx.TextEntryDialog(self, u'Введите название COM порта ',u'COM1,COM2 или /dev/ttyUSB0 ?', '')
+        if dlg.ShowModal() == wx.ID_OK:
+            SetDev(dlg.GetValue())
+
+        dlg.Destroy()
+
+        self.SetStatusText(u'dev: %s' % (dev), 0)
+
 
 
 
