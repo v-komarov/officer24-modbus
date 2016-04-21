@@ -9,9 +9,39 @@ from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 
 
 CFG_FILE = 'cfg.data'
-db = shelve.open(CFG_FILE)
-dev = db['dev']
-db.close()
+
+
+
+
+def GetDev():
+    db = shelve.open(CFG_FILE)
+    if db.has_key('dev') == False:
+        db['dev'] = u''
+
+    dev = db['dev']
+    db.close()
+
+    return dev
+
+
+
+def SetDev(dev):
+
+    db = shelve.open(CFG_FILE)
+    db['dev'] = dev
+    db.close()
+
+    return True
+
+
+
+
+def ConnectDev():
+
+    client = ModbusClient(method='rtu', port='%s' % GetDev(), baudrate='115200', timeout=1)
+
+    return client
+
 
 
 
