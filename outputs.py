@@ -2,19 +2,7 @@
 
 
 import	wx
-import  shelve
-import sys
-
-
-from pymodbus.client.sync import ModbusSerialClient as ModbusClient
-
-
-CFG_FILE = 'cfg.data'
-db = shelve.open(CFG_FILE)
-dev = db['dev']
-db.close()
-
-
+from tools import ConnectDev
 
 
 mode_enter = {
@@ -74,13 +62,13 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
         self.sc_6 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc_7 = wx.SpinCtrl(self, -1, "", (30, 30))
 
-        self.sc_1.SetRange(0,60)
-        self.sc_2.SetRange(0,60)
-        self.sc_3.SetRange(0,60)
-        self.sc_4.SetRange(0,60)
-        self.sc_5.SetRange(0,60)
-        self.sc_6.SetRange(0,60)
-        self.sc_7.SetRange(0,60)
+        self.sc_1.SetRange(0,255)
+        self.sc_2.SetRange(0,255)
+        self.sc_3.SetRange(0,255)
+        self.sc_4.SetRange(0,255)
+        self.sc_5.SetRange(0,255)
+        self.sc_6.SetRange(0,255)
+        self.sc_7.SetRange(0,255)
 
         self.left_3 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 1"))
         self.cb1_1 = wx.CheckBox(self, -1, "")
@@ -145,6 +133,16 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
         self.cb7_6 = wx.CheckBox(self, -1, "")
         self.cb7_7 = wx.CheckBox(self, -1, "")
 
+        self.left_10 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 8"))
+        self.cb8_1 = wx.CheckBox(self, -1, "")
+        self.cb8_2 = wx.CheckBox(self, -1, "")
+        self.cb8_3 = wx.CheckBox(self, -1, "")
+        self.cb8_4 = wx.CheckBox(self, -1, "")
+        self.cb8_5 = wx.CheckBox(self, -1, "")
+        self.cb8_6 = wx.CheckBox(self, -1, "")
+        self.cb8_7 = wx.CheckBox(self, -1, "")
+
+
         self.btn = wx.Button(self, wx.ID_REFRESH)
         self.btn1 = wx.Button(self, wx.ID_SAVE)
 
@@ -152,7 +150,7 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
         p = wx.Panel(self)
 
 
-        grid_sizer_1 = wx.FlexGridSizer(11, 8, 1, 0)
+        grid_sizer_1 = wx.FlexGridSizer(12, 8, 1, 0)
 
         grid_sizer_1.Add(self.head_0, 0, wx.ALL, 10)
         grid_sizer_1.Add(self.head_1, 0, wx.ALL, 10)
@@ -244,6 +242,16 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb7_6, 0, wx.ALL, 10)
         grid_sizer_1.Add(self.cb7_7, 0, wx.ALL, 10)
 
+        grid_sizer_1.Add(self.left_10, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_1, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_2, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_3, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_4, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_5, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_6, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb8_7, 0, wx.ALL, 10)
+
+
 
         grid_sizer_1.Add(self.btn, 0, wx.TOP|wx.ALIGN_RIGHT, 20)
         grid_sizer_1.Add(self.btn1, 0, wx.TOP|wx.ALIGN_LEFT, 20)
@@ -262,9 +270,11 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
 
 
 
+
+
     def Write(self, event):
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
         r = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -291,13 +301,14 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
 
         for item in range(0,7):
 
-            a = eval("self.cb%s_1.GetValue()" % (item+1))
-            b = eval("self.cb%s_2.GetValue()" % (item+1))
-            c = eval("self.cb%s_3.GetValue()" % (item+1))
-            d = eval("self.cb%s_4.GetValue()" % (item+1))
-            e = eval("self.cb%s_5.GetValue()" % (item+1))
-            f = eval("self.cb%s_6.GetValue()" % (item+1))
-            g = eval("self.cb%s_7.GetValue()" % (item+1))
+            a = eval("self.cb1_%s.GetValue()" % (item+1))
+            b = eval("self.cb2_%s.GetValue()" % (item+1))
+            c = eval("self.cb3_%s.GetValue()" % (item+1))
+            d = eval("self.cb4_%s.GetValue()" % (item+1))
+            e = eval("self.cb5_%s.GetValue()" % (item+1))
+            f = eval("self.cb6_%s.GetValue()" % (item+1))
+            g = eval("self.cb7_%s.GetValue()" % (item+1))
+            h = eval("self.cb8_%s.GetValue()" % (item+1))
 
 
 
@@ -329,6 +340,11 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
                 cc[item] = "1"+cc[item]
             else:
                 cc[item] = "0"+cc[item]
+            if h:
+                cc[item] = "1"+cc[item]
+            else:
+                cc[item] = "0"+cc[item]
+
 
         for i in range(0,7):
             bb[i] = int(cc[i],2)
@@ -344,7 +360,7 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
     def Read(self, event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
         rr = client.read_holding_registers(address=1066,count=14,unit=1)
@@ -375,42 +391,48 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
         for item in range(0,7):
             i = bin(result[item])[2:]
             a = "00000000"+i
-            b = a[-7:]
+            b = a[-8:]
+
+
+            if b[7] == "1":
+                eval("self.cb1_%s.SetValue(True)" % (item+1))
+            else:
+                eval("self.cb1_%s.SetValue(False)" % (item+1))
 
             if b[6] == "1":
-                eval("self.cb%s_1.SetValue(True)" % (item+1))
+                eval("self.cb2_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_1.SetValue(False)" % (item+1))
+                eval("self.cb2_%s.SetValue(False)" % (item+1))
 
             if b[5] == "1":
-                eval("self.cb%s_2.SetValue(True)" % (item+1))
+                eval("self.cb3_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_2.SetValue(False)" % (item+1))
+                eval("self.cb3_%s.SetValue(False)" % (item+1))
 
             if b[4] == "1":
-                eval("self.cb%s_3.SetValue(True)" % (item+1))
+                eval("self.cb4_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_3.SetValue(False)" % (item+1))
+                eval("self.cb4_%s.SetValue(False)" % (item+1))
 
             if b[3] == "1":
-                eval("self.cb%s_4.SetValue(True)" % (item+1))
+                eval("self.cb5_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_4.SetValue(False)" % (item+1))
+                eval("self.cb5_%s.SetValue(False)" % (item+1))
 
             if b[2] == "1":
-                eval("self.cb%s_5.SetValue(True)" % (item+1))
+                eval("self.cb6_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_5.SetValue(False)" % (item+1))
+                eval("self.cb6_%s.SetValue(False)" % (item+1))
 
             if b[1] == "1":
-                eval("self.cb%s_6.SetValue(True)" % (item+1))
+                eval("self.cb7_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_6.SetValue(False)" % (item+1))
+                eval("self.cb7_%s.SetValue(False)" % (item+1))
 
             if b[0] == "1":
-                eval("self.cb%s_7.SetValue(True)" % (item+1))
+                eval("self.cb8_%s.SetValue(True)" % (item+1))
             else:
-                eval("self.cb%s_7.SetValue(False)" % (item+1))
+                eval("self.cb8_%s.SetValue(False)" % (item+1))
 
 
         client.close()
