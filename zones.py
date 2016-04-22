@@ -33,8 +33,8 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.head2_0 = wx.StaticText(self, wx.ID_ANY, (u""))
-        self.head2_1 = wx.StaticText(self, wx.ID_ANY, (u"Вход"))
-        self.head2_2 = wx.StaticText(self, wx.ID_ANY, (u"Выход"))
+        self.head2_1 = wx.StaticText(self, wx.ID_ANY, (u"Вход (сек.)"))
+        self.head2_2 = wx.StaticText(self, wx.ID_ANY, (u"Выход (сек.)"))
         self.head2_3 = wx.StaticText(self, wx.ID_ANY, (u"1"))
         self.head2_4 = wx.StaticText(self, wx.ID_ANY, (u"2"))
         self.head2_5 = wx.StaticText(self, wx.ID_ANY, (u"3"))
@@ -794,23 +794,45 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         ### Зоны
-        """
         row_int = []
 
         for i in range(1,17):
 
             item = ""
 
-            for j in range(9,16):
-                if eval("self.cb%s_%s.GetValue()" % (j,i)):
-                    item = "1" + item
-                else:
-                    item = "0" + item
+            if eval("self.cb9_%s.GetValue()" % i):
+                item = "1" + item
+            else:
+                item = "0" + item
+            if eval("self.cb10_%s.GetValue()" % i):
+                item = "1" + item
+            else:
+                item = "0" + item
+            if eval("self.cb11_%s.GetValue()" % i):
+                item = "1" + item
+            else:
+                item = "0" + item
+            if eval("self.cb12_%s.GetValue()" % i):
+                item = "10" + item
+            else:
+                item = "00" + item
+            if eval("self.cb13_%s.GetValue()" % i):
+                item = "1000" + item
+            else:
+                item = "0000" + item
+            if eval("self.cb14_%s.GetValue()" % i):
+                item = "10" + item
+            else:
+                item = "00" + item
+            if eval("self.cb15_%s.GetValue()" % i):
+                item = "1" + item
+            else:
+                item = "0" + item
 
-            row_int.append(item)
+            row_int.append(int(item,2))
 
-        print row_int
-        """
+        rq=client.write_registers(1098,row_int,unit=1)
+
         client.close()
 
 
@@ -836,20 +858,40 @@ class Zones(wx.aui.AuiMDIChildFrame):
                     eval("self.cb%s_%s.SetValue(False)" % (i,j))
 
         ### Зоны
-        """
         rr = client.read_holding_registers(address=1098,count=16,unit=1)
         result = rr.registers
         row_bit = []
         for row in result:
-            print bin(row)
-            row_bit.append((("0"*16)+(bin(row)[2:]))[-16:])
+            row_bit.append((bin(row)[2:]).rjust(16,"0"))
 
         for i in range(1,17):
-            for j in range(9,16):
-                if (row_bit[(i-1)])[-(j)] == "1":
-                    eval("self.cb%s_%s.SetValue(True)" % (j,i))
-                else:
-                    eval("self.cb%s_%s.SetValue(False)" % (j,i))
-        """
+            if (row_bit[(i-1)])[-1] == "1":
+                eval("self.cb9_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb9_%s.SetValue(False)" % i)
+            if (row_bit[(i-1)])[-2] == "1":
+                eval("self.cb10_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb10_%s.SetValue(False)" % i)
+            if (row_bit[(i-1)])[-3] == "1":
+                eval("self.cb11_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb11_%s.SetValue(False)" % i)
+            if (row_bit[(i-1)])[-5] == "1":
+                eval("self.cb12_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb12_%s.SetValue(False)" % i)
+            if (row_bit[(i-1)])[-9] == "1":
+                eval("self.cb13_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb13_%s.SetValue(False)" % i)
+            if (row_bit[(i-1)])[-11] == "1":
+                eval("self.cb14_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb14_%s.SetValue(False)" % i)
+            if (row_bit[(i-1)])[-12] == "1":
+                eval("self.cb15_%s.SetValue(True)" % i)
+            else:
+                eval("self.cb15_%s.SetValue(False)" % i)
 
         client.close()
