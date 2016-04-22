@@ -263,11 +263,127 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb10_16 = wx.CheckBox(self, -1, "")
 
 
-#        self.sc_3 = wx.SpinCtrl(self, -1, "", (30, 30))
-#        self.sc_4 = wx.SpinCtrl(self, -1, "", (30, 30))
-#        self.sc_5 = wx.SpinCtrl(self, -1, "", (30, 30))
-#        self.sc_6 = wx.SpinCtrl(self, -1, "", (30, 30))
-#        self.sc_7 = wx.SpinCtrl(self, -1, "", (30, 30))
+        self.left_111 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_112 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_113 = wx.StaticText(self, wx.ID_ANY, (u"24 часовая"))
+        self.cb11_1 = wx.CheckBox(self, -1, "")
+        self.cb11_2 = wx.CheckBox(self, -1, "")
+        self.cb11_3 = wx.CheckBox(self, -1, "")
+        self.cb11_4 = wx.CheckBox(self, -1, "")
+        self.cb11_5 = wx.CheckBox(self, -1, "")
+        self.cb11_6 = wx.CheckBox(self, -1, "")
+        self.cb11_7 = wx.CheckBox(self, -1, "")
+        self.cb11_8 = wx.CheckBox(self, -1, "")
+        self.cb11_9 = wx.CheckBox(self, -1, "")
+        self.cb11_10 = wx.CheckBox(self, -1, "")
+        self.cb11_11 = wx.CheckBox(self, -1, "")
+        self.cb11_12 = wx.CheckBox(self, -1, "")
+        self.cb11_13 = wx.CheckBox(self, -1, "")
+        self.cb11_14 = wx.CheckBox(self, -1, "")
+        self.cb11_15 = wx.CheckBox(self, -1, "")
+        self.cb11_16 = wx.CheckBox(self, -1, "")
+
+
+        self.left_121 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_122 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_123 = wx.StaticText(self, wx.ID_ANY, (u"Нормально открытая"))
+        self.cb12_1 = wx.CheckBox(self, -1, "")
+        self.cb12_2 = wx.CheckBox(self, -1, "")
+        self.cb12_3 = wx.CheckBox(self, -1, "")
+        self.cb12_4 = wx.CheckBox(self, -1, "")
+        self.cb12_5 = wx.CheckBox(self, -1, "")
+        self.cb12_6 = wx.CheckBox(self, -1, "")
+        self.cb12_7 = wx.CheckBox(self, -1, "")
+        self.cb12_8 = wx.CheckBox(self, -1, "")
+        self.cb12_9 = wx.CheckBox(self, -1, "")
+        self.cb12_10 = wx.CheckBox(self, -1, "")
+        self.cb12_11 = wx.CheckBox(self, -1, "")
+        self.cb12_12 = wx.CheckBox(self, -1, "")
+        self.cb12_13 = wx.CheckBox(self, -1, "")
+        self.cb12_14 = wx.CheckBox(self, -1, "")
+        self.cb12_15 = wx.CheckBox(self, -1, "")
+        self.cb12_16 = wx.CheckBox(self, -1, "")
+
+
+        self.left_131 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_132 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_133 = wx.StaticText(self, wx.ID_ANY, (u"Управление режимом охраны"))
+        self.cb13_1 = wx.CheckBox(self, -1, "")
+        self.cb13_2 = wx.CheckBox(self, -1, "")
+        self.cb13_3 = wx.CheckBox(self, -1, "")
+        self.cb13_4 = wx.CheckBox(self, -1, "")
+        self.cb13_5 = wx.CheckBox(self, -1, "")
+        self.cb13_6 = wx.CheckBox(self, -1, "")
+        self.cb13_7 = wx.CheckBox(self, -1, "")
+        self.cb13_8 = wx.CheckBox(self, -1, "")
+        self.cb13_9 = wx.CheckBox(self, -1, "")
+        self.cb13_10 = wx.CheckBox(self, -1, "")
+        self.cb13_11 = wx.CheckBox(self, -1, "")
+        self.cb13_12 = wx.CheckBox(self, -1, "")
+        self.cb13_13 = wx.CheckBox(self, -1, "")
+        self.cb13_14 = wx.CheckBox(self, -1, "")
+        self.cb13_15 = wx.CheckBox(self, -1, "")
+        self.cb13_16 = wx.CheckBox(self, -1, "")
+
+
+        self.left_141 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_142 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_143 = wx.StaticText(self, wx.ID_ANY, (u"Кнопка выход"))
+        self.cb14_1 = wx.CheckBox(self, -1, "")
+        self.cb14_2 = wx.CheckBox(self, -1, "")
+        self.cb14_3 = wx.CheckBox(self, -1, "")
+        self.cb14_4 = wx.CheckBox(self, -1, "")
+        self.cb14_5 = wx.CheckBox(self, -1, "")
+        self.cb14_6 = wx.CheckBox(self, -1, "")
+        self.cb14_7 = wx.CheckBox(self, -1, "")
+        self.cb14_8 = wx.CheckBox(self, -1, "")
+        self.cb14_9 = wx.CheckBox(self, -1, "")
+        self.cb14_10 = wx.CheckBox(self, -1, "")
+        self.cb14_11 = wx.CheckBox(self, -1, "")
+        self.cb14_12 = wx.CheckBox(self, -1, "")
+        self.cb14_13 = wx.CheckBox(self, -1, "")
+        self.cb14_14 = wx.CheckBox(self, -1, "")
+        self.cb14_15 = wx.CheckBox(self, -1, "")
+        self.cb14_16 = wx.CheckBox(self, -1, "")
+
+
+        self.left_151 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_152 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.left_153 = wx.StaticText(self, wx.ID_ANY, (u"Внутренняя"))
+        self.cb15_1 = wx.CheckBox(self, -1, "")
+        self.cb15_2 = wx.CheckBox(self, -1, "")
+        self.cb15_3 = wx.CheckBox(self, -1, "")
+        self.cb15_4 = wx.CheckBox(self, -1, "")
+        self.cb15_5 = wx.CheckBox(self, -1, "")
+        self.cb15_6 = wx.CheckBox(self, -1, "")
+        self.cb15_7 = wx.CheckBox(self, -1, "")
+        self.cb15_8 = wx.CheckBox(self, -1, "")
+        self.cb15_9 = wx.CheckBox(self, -1, "")
+        self.cb15_10 = wx.CheckBox(self, -1, "")
+        self.cb15_11 = wx.CheckBox(self, -1, "")
+        self.cb15_12 = wx.CheckBox(self, -1, "")
+        self.cb15_13 = wx.CheckBox(self, -1, "")
+        self.cb15_14 = wx.CheckBox(self, -1, "")
+        self.cb15_15 = wx.CheckBox(self, -1, "")
+        self.cb15_16 = wx.CheckBox(self, -1, "")
+
+
+        self.sc1_1.SetRange(0,255)
+        self.sc2_1.SetRange(0,255)
+        self.sc3_1.SetRange(0,255)
+        self.sc4_1.SetRange(0,255)
+        self.sc5_1.SetRange(0,255)
+        self.sc6_1.SetRange(0,255)
+        self.sc7_1.SetRange(0,255)
+        self.sc8_1.SetRange(0,255)
+        self.sc1_2.SetRange(0,255)
+        self.sc2_2.SetRange(0,255)
+        self.sc3_2.SetRange(0,255)
+        self.sc4_2.SetRange(0,255)
+        self.sc5_2.SetRange(0,255)
+        self.sc6_2.SetRange(0,255)
+        self.sc7_2.SetRange(0,255)
+        self.sc8_2.SetRange(0,255)
 
 
         self.btn = wx.Button(self, wx.ID_REFRESH)
@@ -277,7 +393,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         p = wx.Panel(self)
 
 
-        grid_sizer_1 = wx.FlexGridSizer(13, 19, 1, 0)
+        grid_sizer_1 = wx.FlexGridSizer(18, 19, 1, 0)
 
         grid_sizer_1.Add(self.head_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.head_1, 0, wx.ALL, 5)
@@ -531,6 +647,111 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb10_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_111, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_112, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_113, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_1, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_2, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_3, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_4, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_5, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_6, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_7, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_8, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_9, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_10, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_11, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_12, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_13, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_14, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_15, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb11_16, 0, wx.ALL, 5)
+
+
+        grid_sizer_1.Add(self.left_121, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_122, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_123, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_1, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_2, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_3, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_4, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_5, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_6, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_7, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_8, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_9, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_10, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_11, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_12, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_13, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_14, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_15, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb12_16, 0, wx.ALL, 5)
+
+
+        grid_sizer_1.Add(self.left_131, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_132, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_133, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_1, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_2, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_3, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_4, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_5, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_6, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_7, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_8, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_9, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_10, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_11, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_12, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_13, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_14, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_15, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb13_16, 0, wx.ALL, 5)
+
+
+        grid_sizer_1.Add(self.left_141, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_142, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_143, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_1, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_2, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_3, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_4, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_5, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_6, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_7, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_8, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_9, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_10, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_11, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_12, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_13, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_14, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_15, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb14_16, 0, wx.ALL, 5)
+
+
+        grid_sizer_1.Add(self.left_151, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_152, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.left_153, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_1, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_2, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_3, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_4, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_5, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_6, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_7, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_8, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_9, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_10, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_11, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_12, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_13, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_14, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_15, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.cb15_16, 0, wx.ALL, 5)
+
+
         grid_sizer_1.Add(self.btn, 0, wx.TOP|wx.ALIGN_RIGHT, 20)
         grid_sizer_1.Add(self.btn1, 0, wx.TOP|wx.ALIGN_LEFT, 20)
 
@@ -542,6 +763,93 @@ class Zones(wx.aui.AuiMDIChildFrame):
         wx.CallAfter(self.Layout)
 
 
-        #self.Bind(wx.EVT_BUTTON, self.Read, self.btn)
-        #self.Bind(wx.EVT_BUTTON, self.Write, self.btn1)
+        self.Bind(wx.EVT_BUTTON, self.Read, self.btn)
+        self.Bind(wx.EVT_BUTTON, self.Write, self.btn1)
 
+
+
+
+
+    def Write(self, event):
+
+        client = ConnectDev()
+        client.connect()
+
+        ### Разделы
+        row_int = []
+
+        for i in range(1,9):
+
+            item = ""
+
+            for j in range(1,17):
+                if eval("self.cb%s_%s.GetValue()" % (i,j)):
+                    item = "1"+item
+                else:
+                    item = "0"+item
+
+            row_int.append(int(item,2))
+
+        rq=client.write_registers(1080,row_int,unit=1)
+
+
+        ### Зоны
+        """
+        row_int = []
+
+        for i in range(1,17):
+
+            item = ""
+
+            for j in range(9,16):
+                if eval("self.cb%s_%s.GetValue()" % (j,i)):
+                    item = "1" + item
+                else:
+                    item = "0" + item
+
+            row_int.append(item)
+
+        print row_int
+        """
+        client.close()
+
+
+
+
+    def Read(self, event):
+
+        client = ConnectDev()
+        client.connect()
+
+        ### Разделы
+        rr = client.read_holding_registers(address=1080,count=8,unit=1)
+        result = rr.registers
+        row_bit = []
+        for row in result:
+            row_bit.append((("0"*16)+(bin(row)[2:]))[-16:])
+
+        for i in range(1,9):
+            for j in range(1,17):
+                if (row_bit[(i-1)])[-(j)] == "1":
+                    eval("self.cb%s_%s.SetValue(True)" % (i,j))
+                else:
+                    eval("self.cb%s_%s.SetValue(False)" % (i,j))
+
+        ### Зоны
+        """
+        rr = client.read_holding_registers(address=1098,count=16,unit=1)
+        result = rr.registers
+        row_bit = []
+        for row in result:
+            print bin(row)
+            row_bit.append((("0"*16)+(bin(row)[2:]))[-16:])
+
+        for i in range(1,17):
+            for j in range(9,16):
+                if (row_bit[(i-1)])[-(j)] == "1":
+                    eval("self.cb%s_%s.SetValue(True)" % (j,i))
+                else:
+                    eval("self.cb%s_%s.SetValue(False)" % (j,i))
+        """
+
+        client.close()
