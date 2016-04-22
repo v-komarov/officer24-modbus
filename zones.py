@@ -833,6 +833,17 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
         rq=client.write_registers(1098,row_int,unit=1)
 
+        ### Входы, выходы
+        row_int = [0,0,0,0,0,0,0,0]
+        for i in range(0,8):
+            enter_value = eval("self.sc%s_1.GetValue()" % (i+1))
+            exit_value =  eval("self.sc%s_2.GetValue()" % (i+1))
+
+            row_int[i] = int( (hex(enter_value))[2:].rjust(2,"0") + ((hex(exit_value))[2:].rjust(2,"0")),16 )
+
+
+        #print row_int
+        rq=client.write_registers(1089,row_int,unit=1)
         client.close()
 
 
@@ -893,5 +904,23 @@ class Zones(wx.aui.AuiMDIChildFrame):
                 eval("self.cb15_%s.SetValue(True)" % i)
             else:
                 eval("self.cb15_%s.SetValue(False)" % i)
+
+
+        ### Входы, выходы
+        rr = client.read_holding_registers(address=1089,count=8,unit=1)
+        result = rr.registers
+        #print result
+        for i in range(0,8):
+            tworeg = (hex(result[i])[2:]).rjust(4,"0")
+            enter_value = int(tworeg[0:2],16)
+            exit_value = int(tworeg[2:4],16)
+
+            #print tworeg,enter_value,enter_value
+
+            eval("self.sc%s_1.SetValue(enter_value)" % (i+1))
+            eval("self.sc%s_2.SetValue(exit_value)" % (i+1))
+
+
+
 
         client.close()
