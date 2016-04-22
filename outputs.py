@@ -4,7 +4,7 @@
 import	wx
 from tools import ConnectDev
 
-
+"""
 mode_enter = {
     u'':0,
     u'Охрана':1,
@@ -26,6 +26,16 @@ mode_enter = {
     u'Питание пожарных датчиков':17,
     u'Отключение 220':20
 }
+"""
+
+
+mode_enter = {
+    u'':0,
+    u'Охрана':1,
+    u'Тревога':2,
+    u'Питание':4,
+    u'Статус охраны':15,
+}
 
 
 
@@ -36,13 +46,13 @@ class OutPuts(wx.aui.AuiMDIChildFrame):
 
 
         self.head_0 = wx.StaticText(self, wx.ID_ANY, (u""))
-        self.head_1 = wx.StaticText(self, wx.ID_ANY, (u"1"))
-        self.head_2 = wx.StaticText(self, wx.ID_ANY, (u"2"))
-        self.head_3 = wx.StaticText(self, wx.ID_ANY, (u"3"))
-        self.head_4 = wx.StaticText(self, wx.ID_ANY, (u"4"))
-        self.head_5 = wx.StaticText(self, wx.ID_ANY, (u"5"))
-        self.head_6 = wx.StaticText(self, wx.ID_ANY, (u"6"))
-        self.head_7 = wx.StaticText(self, wx.ID_ANY, (u"7"))
+        self.head_1 = wx.StaticText(self, wx.ID_ANY, (u"Выход 1"))
+        self.head_2 = wx.StaticText(self, wx.ID_ANY, (u"Выход 2"))
+        self.head_3 = wx.StaticText(self, wx.ID_ANY, (u"Выход 3"))
+        self.head_4 = wx.StaticText(self, wx.ID_ANY, (u"Выход 4"))
+        self.head_5 = wx.StaticText(self, wx.ID_ANY, (u"Выход 5"))
+        self.head_6 = wx.StaticText(self, wx.ID_ANY, (u"Выход 6"))
+        self.head_7 = wx.StaticText(self, wx.ID_ANY, (u"Выход 7"))
 
         self.left_1 = wx.StaticText(self, wx.ID_ANY, (u"Режим"))
         self.ch_1 = wx.wx.ComboBox(self, -1, "", (-1,-1), (130, -1), mode_enter.keys(), wx.CB_DROPDOWN|wx.CB_READONLY)
