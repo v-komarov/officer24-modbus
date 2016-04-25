@@ -46,8 +46,8 @@ def ConnectDev():
 
 def Registr2ip(result):
 
-    adr1 = (hex(result[0])+"0000")[2:6]
-    adr2 = (hex(result[1])+"0000")[2:6]
+    adr1 = (hex(result[0])[2:]).rjust(4,"0")
+    adr2 = (hex(result[1])[2:]).rjust(4,"0")
     a = int(adr1[0:2],16)
     b = int(adr1[2:4],16)
     c = int(adr2[0:2],16)
@@ -67,6 +67,52 @@ def Ip2registr(ip_string):
     d = ("00"+(hex(int(adr[3]))[2:]))[-2:]
 
     result = [int(a+b,16),int(c+d,16)]
+
+    return result
+
+
+
+def Reg2Word(data):
+
+    result = ""
+
+    for item in data:
+        if item == 0:
+            return result
+        a = (hex(item)[2:]).ljust(4,"0")
+        b = a[0:2]
+        c = a[2:4]
+        result = result + chr(int(b,16)) + chr(int(c,16))
+
+    return ""
+
+
+
+def Word2Reg(data,RegCount):
+
+    result = [0] * RegCount
+    l = []
+    word = list(data)
+
+
+    for w in word:
+        l.append(hex(ord(w)))
+
+
+
+    if len(l)%2 == 0:
+        l.append('0x0')
+        l.append('0x0')
+    else:
+        l.append('0x0')
+
+
+    wordlen = len(l)/2
+
+    for i in range(0,wordlen):
+        result[i] = int( ((l[0])[2:].rjust(2,"0") + (l[1])[2:].rjust(2,"0")),16)
+        del l[0]
+        del l[0]
 
     return result
 
