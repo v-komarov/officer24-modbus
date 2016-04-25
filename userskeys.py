@@ -2,17 +2,10 @@
 
 
 import	wx
-import  shelve
 import sys
 import  wx.lib.mixins.listctrl  as  listmix
 
-from    tools import Read2bytes,StrRevers,Write16key
-
-
-from pymodbus.client.sync import ModbusSerialClient as ModbusClient
-
-
-CFG_FILE = 'cfg.data'
+from    tools import Read2bytes,StrRevers,Write16key,ConnectDev
 
 
 
@@ -22,11 +15,6 @@ CFG_FILE = 'cfg.data'
 class Keys(wx.aui.AuiMDIChildFrame):
     def __init__(self, parent):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Ключи")
-
-
-        db = shelve.open(CFG_FILE)
-        self.dev = db['dev']
-        db.close()
 
 
 
@@ -79,7 +67,7 @@ class Keys(wx.aui.AuiMDIChildFrame):
             data_part.append(int(item2.GetText()))
 
 
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
         ### Ключи пользователей
@@ -149,7 +137,8 @@ class Keys(wx.aui.AuiMDIChildFrame):
 
 
     def ReadKey(self,event):
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
+        client.connect()
 
         rr = client.read_holding_registers(address=2064,count=4,unit=1)
         result = rr.registers
@@ -187,10 +176,6 @@ class List(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
         self.SetColumnWidth(2, 250)
 
 
-        db = shelve.open(CFG_FILE)
-        self.dev = db['dev']
-        db.close()
-
 
 
     #### --- Отображение списка ---
@@ -200,7 +185,7 @@ class List(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
         #### --- Массив идентификаторов строк ---
         self.kod_record = []
 
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 
@@ -239,7 +224,7 @@ class List(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
 
 
         ### --- Получение списка ---
-        for row in  range(1,129):
+        for row in  reversed(range(1,129)):
             index = self.InsertStringItem(sys.maxint, "")
             self.SetStringItem(index, 0, "%s" % row)
 
@@ -307,12 +292,6 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Мастер ключ")
 
 
-        db = shelve.open(CFG_FILE)
-        self.dev = db['dev']
-        db.close()
-
-
-
         self.btn = wx.Button(self, wx.ID_REFRESH)
         self.btn1 = wx.Button(self, wx.ID_SAVE)
         self.btn2 = wx.Button(self,-1, u"Считать ключ")
@@ -351,7 +330,8 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
 
 
     def Read(self, evt):
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
+        client.connect()
 
         rr = client.read_holding_registers(address=158,count=4,unit=1)
         result = rr.registers
@@ -369,7 +349,9 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
     def Write(self,event):
         result = self.text_ctrl_1.GetValue()
 
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
+        client.connect()
+
         rq=client.write_registers(158,Write16key(result),unit=1)
 
         client.close()
@@ -378,7 +360,8 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
 
 
     def ReadKey(self,event):
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
+        client.connect()
 
         rr = client.read_holding_registers(address=2064,count=4,unit=1)
         result = rr.registers
