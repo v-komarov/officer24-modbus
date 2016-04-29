@@ -42,8 +42,8 @@ class GSMSetting(wx.aui.AuiMDIChildFrame):
         self.text_ctrl_6 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
         self.text_ctrl_7 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
         self.text_ctrl_8 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
-        self.text_ctrl_9 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1),style=wx.TE_PASSWORD)
-        self.text_ctrl_10 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1),style=wx.TE_PASSWORD)
+        self.text_ctrl_9 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
+        self.text_ctrl_10 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
         self.text_ctrl_11 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
         self.text_ctrl_12 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
 
