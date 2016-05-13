@@ -13,9 +13,9 @@ class Settings(wx.aui.AuiMDIChildFrame):
 
 
         self.label_1 = wx.StaticText(self, wx.ID_ANY, (u"Офицер вкл./выкл."))
-        self.label_2 = wx.StaticText(self, wx.ID_ANY, (u"Идинтефикатор Офицер-а"))
+        self.label_2 = wx.StaticText(self, wx.ID_ANY, (u"Идинтефикатор СК Офицер"))
         self.label_3 = wx.StaticText(self, wx.ID_ANY, (u"Вкл./выкл. сообщений постоновки/снятия зон"))
-        self.label_4 = wx.StaticText(self, wx.ID_ANY, (u"Идентификация панели"))
+        self.label_4 = wx.StaticText(self, wx.ID_ANY, (u"Идентификатор ПКПО Офицер"))
         self.label_5 = wx.StaticText(self, wx.ID_ANY, (u"Чувствительность охранных зон"))
         self.label_6 = wx.StaticText(self, wx.ID_ANY, (u"Период запросов присутствия к серверу в сек"))
         self.label_7 = wx.StaticText(self, wx.ID_ANY, (u"Уровень падения сигнала модема\nдля отправки сообщения на сервер"))
