@@ -43,7 +43,7 @@ ID_Zones = wx.NewId()
 
 class MyParentFrame(wx.aui.AuiMDIParentFrame):
     def __init__(self):
-        wx.aui.AuiMDIParentFrame.__init__(self, None, 1, u"Программирование ППКОП \"Офицер\" 04", size=(1200,800),style=wx.FRAME_NO_WINDOW_MENU|wx.DEFAULT_FRAME_STYLE)
+        wx.aui.AuiMDIParentFrame.__init__(self, None, 1, u"Программирование ППКОП \"Офицер\" 04", size=(1200,800),style=wx.FRAME_NO_WINDOW_MENU | wx.MINIMIZE_BOX | wx.MAXIMIZE_BOX | wx.RESIZE_BORDER | wx.CAPTION)
 
 
         self.MId=wx.NewId()
@@ -154,7 +154,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
             if isinstance(m, wx.aui.AuiMDIClientWindow):
                 for k in m.GetChildren():
                     k.Close()
-                    #if isinstance(k, ChildFrame):
+
 
         evt.Skip()
 
@@ -170,7 +170,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
             if isinstance(m, wx.aui.AuiMDIClientWindow):
                 for k in m.GetChildren():
                     k.Close()
-                    #if isinstance(k, ChildFrame):
+
 
         evt.Skip()
 
