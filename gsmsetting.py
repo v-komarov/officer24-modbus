@@ -2,7 +2,7 @@
 
 import  wx, wx.aui
 from    tools import    Registr2ip,Ip2registr,ConnectDev,Reg2Word,Word2Reg
-
+from tools import Saved
 
 
 
@@ -148,6 +148,7 @@ class GSMSetting(wx.aui.AuiMDIChildFrame):
 
         client.close()
 
+        Saved(self)
 
 
 

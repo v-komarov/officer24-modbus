@@ -2,7 +2,7 @@
 
 import  wx
 from tools import ConnectDev
-
+from tools import Saved
 
 
 
@@ -845,6 +845,8 @@ class Zones(wx.aui.AuiMDIChildFrame):
         #print row_int
         rq=client.write_registers(1089,row_int,unit=1)
         client.close()
+
+        Saved(self)
 
 
 

@@ -3,7 +3,7 @@
 
 import	wx
 from tools import ConnectDev
-
+from tools import Saved
 
 
 class Settings(wx.aui.AuiMDIChildFrame):
@@ -108,7 +108,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
 
         client.close()
 
-
+        Saved(self)
 
 
 

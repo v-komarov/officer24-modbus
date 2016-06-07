@@ -15,6 +15,7 @@ from    outputs     import  OutPuts
 from    searchusb import	ListUsb
 from    tools import SaveConfig, GetDev, SetDev
 from    userskeys   import  Keys,MasterKey
+from    zones import Zones
 
 #----------------------------------------------------------------------
 ID_Exit = wx.NewId()
@@ -120,6 +121,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
         self.Bind(wx.EVT_MENU, self.Outputs, id=ID_OutPuts)
         self.Bind(wx.EVT_MENU, self.Setting, id=ID_Additions)
         self.Bind(wx.EVT_MENU, self.Man, id=ID_Man)
+        self.Bind(wx.EVT_MENU, self.Mainzones, id=ID_Zones)
 
 
 
@@ -148,6 +150,14 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 #### --- Завершение работы ---
     def OnExit(self, evt):
+        for m in self.GetChildren():
+            if isinstance(m, wx.aui.AuiMDIClientWindow):
+                for k in m.GetChildren():
+                    k.Close()
+                    #if isinstance(k, ChildFrame):
+
+        evt.Skip()
+
         self.Close(True)
 
 
@@ -235,6 +245,16 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
     def Outputs(self, evt):
         child = OutPuts(self)
         child.Activate()
+
+
+
+
+#### Зоны
+    def Mainzones(self, evt):
+        child = Zones(self)
+        child.Activate()
+
+
 
 
 

@@ -14,8 +14,8 @@ def Info(self):
 
 	info = wx.AboutDialogInfo()
 	info.Name = u"Утилита программирования\nППКОП \"Офицер\" 04"
-	info.Version = "0.9"
-	info.Copyright = "(C) 2016 ГПБ Ураган"
+	info.Version = u"0.5"
+	info.Copyright = u"(C) 2016 ГПБ Ураган"
 	info.Description = wordwrap(
 		u"Основное назначение:\n"
 		u"Программирование панели по протоколу modbus."
@@ -28,10 +28,10 @@ def Info(self):
 		u"zope.interface(ver 4.1.2)\n"
 		u"",
 		350, wx.ClientDC(self))
-	info.WebSite = ("http://www.officer24.ru", "Officer")
-	info.Developers = [ "Vladimir Komarov",
-						"Roman Tayursky",
-						"Anatoly Zamyatin" ]
+	info.WebSite = (u"http://www.officer24.ru", u"Officer")
+	info.Developers = [ u"Vladimir Komarov",
+						u"Roman Tayursky",
+						u"Anatoly Zamyatin" ]
 
 	wx.AboutBox(info)
 

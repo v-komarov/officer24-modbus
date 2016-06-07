@@ -1,13 +1,9 @@
 #coding:utf-8
 
-from pymodbus.client.sync import ModbusSerialClient as ModbusClient
-from    tools import    Registr2ip,Ip2registr
-
+from    tools import    Registr2ip,Ip2registr,ConnectDev
 import  wx, wx.aui
-import  shelve
+from tools import Saved
 
-
-CFG_FILE = 'cfg.data'
 
 
 
@@ -16,10 +12,6 @@ CFG_FILE = 'cfg.data'
 class EthSetting(wx.aui.AuiMDIChildFrame):
     def __init__(self, parent):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Ethernet")
-
-        db = shelve.open(CFG_FILE)
-        self.dev = db['dev']
-        db.close()
 
 
         self.label_1 = wx.StaticText(self, wx.ID_ANY, (u"IP устройства"))
@@ -91,7 +83,7 @@ class EthSetting(wx.aui.AuiMDIChildFrame):
     def Write(self,event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 
@@ -133,7 +125,7 @@ class EthSetting(wx.aui.AuiMDIChildFrame):
 
         client.close()
 
-
+        Saved(self)
 
 
 
@@ -142,7 +134,7 @@ class EthSetting(wx.aui.AuiMDIChildFrame):
     def Read(self, event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % self.dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 

@@ -1,14 +1,9 @@
 #coding:utf-8
 
 import  wx
-import usb
 import sys
-import shelve
-import commands
 from serial.tools import list_ports
-
-
-CFG_FILE = 'cfg.data'
+from tools import SetDev
 
 
 
@@ -89,10 +84,8 @@ class ListUsb(wx.Dialog):
 
 
     def Save(self, event):
-        dev = self.ctrl0.GetItem(self.ctrl0.currentItem,0).GetText()
-        db = shelve.open(CFG_FILE)
-        db['dev'] = dev
-        db.close()
+
+        SetDev(self.ctrl0.GetItem(self.ctrl0.currentItem,0).GetText())
 
         self.Destroy()
 

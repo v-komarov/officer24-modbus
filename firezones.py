@@ -2,21 +2,8 @@
 
 
 import	wx
-import  shelve
-import sys
-import  wx.lib.mixins.listctrl  as  listmix
-
-from    tools import Read2bytes,StrRevers,Write16key
-
-
-from pymodbus.client.sync import ModbusSerialClient as ModbusClient
-
-
-CFG_FILE = 'cfg.data'
-db = shelve.open(CFG_FILE)
-dev = db['dev']
-db.close()
-
+from tools import ConnectDev,GetAddressBit,SetAddressBit
+from tools import Saved
 
 
 
@@ -25,7 +12,6 @@ db.close()
 class FireZone1(wx.aui.AuiMDIChildFrame):
     def __init__(self, parent):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Пожарная зона 1")
-
 
 
         self.label_1 = wx.StaticText(self, wx.ID_ANY, (u"Пожарная зона 1 в разделе"))
@@ -83,7 +69,7 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
     def Write(self,event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 
@@ -102,7 +88,7 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
 
         b = "00000%s%s%s" % (b3,b2,b1)
 
-        c = bin(self.sc.GetValue())
+        c = SetAddressBit(self.sc.GetValue())
 
         #print c+b
 
@@ -114,7 +100,7 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
 
         client.close()
 
-
+        Saved(self)
 
 
 
@@ -123,7 +109,7 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
     def Read(self, event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 
@@ -147,7 +133,8 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
         ## Двойная сработка пож.
         b3 = b[-3]
 
-        self.sc.SetValue(c1)
+        self.sc.SetValue(GetAddressBit(c))
+
         if b1 == '1':
             self.cb2.SetValue(True)
         else:
@@ -171,7 +158,6 @@ class FireZone1(wx.aui.AuiMDIChildFrame):
 class FireZone2(wx.aui.AuiMDIChildFrame):
     def __init__(self, parent):
         wx.aui.AuiMDIChildFrame.__init__(self, parent, -1, title=u"Пожарная зона 2")
-
 
 
         self.label_1 = wx.StaticText(self, wx.ID_ANY, (u"Пожарная зона 2 в разделе"))
@@ -229,7 +215,7 @@ class FireZone2(wx.aui.AuiMDIChildFrame):
     def Write(self,event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 
@@ -248,7 +234,7 @@ class FireZone2(wx.aui.AuiMDIChildFrame):
 
         b = "00000%s%s%s" % (b3,b2,b1)
 
-        c = bin(self.sc.GetValue())
+        c = SetAddressBit(self.sc.GetValue())
 
         #print c+b
 
@@ -260,19 +246,18 @@ class FireZone2(wx.aui.AuiMDIChildFrame):
 
         client.close()
 
-
+        Saved(self)
 
 
     def Read(self, event):
 
 
-        client = ModbusClient(method='rtu', port='%s' % dev, baudrate='115200', timeout=1)
+        client = ConnectDev()
         client.connect()
 
 
         rr = client.read_holding_registers(address=1116,count=1,unit=1)
         result = rr.registers
-
 
 
         a = (bin(result[0]))[2:]
@@ -290,7 +275,7 @@ class FireZone2(wx.aui.AuiMDIChildFrame):
         ## Двойная сработка пож.
         b3 = b[-3]
 
-        self.sc.SetValue(c1)
+        self.sc.SetValue(GetAddressBit(c))
         if b1 == '1':
             self.cb2.SetValue(True)
         else:

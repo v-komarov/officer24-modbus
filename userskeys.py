@@ -6,7 +6,7 @@ import sys
 import  wx.lib.mixins.listctrl  as  listmix
 
 from    tools import Read2bytes,StrRevers,Write16key,ConnectDev
-
+from tools import Saved
 
 
 
@@ -97,6 +97,8 @@ class Keys(wx.aui.AuiMDIChildFrame):
             reg = reg + step
 
         client.close()
+
+        Saved(self)
 
 
 
@@ -224,7 +226,7 @@ class List(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
 
 
         ### --- Получение списка ---
-        for row in  reversed(range(1,129)):
+        for row in range(1,129):
             index = self.InsertStringItem(sys.maxint, "")
             self.SetStringItem(index, 0, "%s" % row)
 
@@ -356,6 +358,7 @@ class MasterKey(wx.aui.AuiMDIChildFrame):
 
         client.close()
 
+        Saved(self)
 
 
 

@@ -219,3 +219,14 @@ def SetAddressBit(bits):
 
     return "".join(a)
 
+
+
+
+
+### Сообщение записано
+def Saved(self):
+
+    dlg = wx.MessageDialog(self, u'Значения записаны в регистры',u'Сообщение',wx.OK | wx.ICON_INFORMATION)
+    dlg.ShowModal()
+    dlg.Destroy()
+
