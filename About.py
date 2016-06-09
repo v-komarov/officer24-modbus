@@ -22,10 +22,8 @@ def Info(self):
 
 		u"\n\nИспользуемые библиотеки:\n"
 		u"wxPython(ver 3.0.2.0)\n"
-		u"Twisted(ver 16.0.0)\n"
 		u"pymodbus(ver 1.2.0)\n"
 		u"pyserial(ver 2.7)\n"
-		u"zope.interface(ver 4.1.2)\n"
 		u"",
 		350, wx.ClientDC(self))
 	info.WebSite = (u"http://www.officer24.ru", u"Officer")
