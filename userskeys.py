@@ -593,26 +593,26 @@ class ListNT(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin,listmix.TextEditMixin):
         client.close()
 
 
-
+        data_key.reverse()
 
 
 
         ### --- Получение списка ---
         for row in range(128,0,-1):
             index = self.InsertStringItem(sys.maxint, "")
-            self.SetStringItem(row, 0, "%s" % row)
+            self.SetStringItem(index, 0, "%s" % row)
 
             b8 = data_key[0:4]
             del data_key[0:4]
 
             result = "%s%s%s%s" % (Read2bytes(b8[0]),Read2bytes(b8[1]),Read2bytes(b8[2]),Read2bytes(b8[3]))
 
-            self.SetStringItem(row,1 , StrRevers(result))
+            self.SetStringItem(index,1 , StrRevers(result))
 
             part = data_part[0]
             del data_part[0]
 
-            self.SetStringItem(row,2 , "%s" % (part))
+            self.SetStringItem(index,2 , "%s" % (part))
 
 
             #### --- Заполнение массива идентификаторов строк ---

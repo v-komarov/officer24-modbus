@@ -152,6 +152,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 #### --- Завершение работы ---
     def OnExit(self, evt):
+
         for m in self.GetChildren():
             if isinstance(m, wx.aui.AuiMDIClientWindow):
                 for k in m.GetChildren():
@@ -161,6 +162,7 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
         evt.Skip()
 
         self.Close(True)
+
 
 
 
