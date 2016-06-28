@@ -20,37 +20,38 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.head_6 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.head_7 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.head_8 = wx.StaticText(self, wx.ID_ANY, (u""))
-        self.head_9 = wx.StaticText(self, wx.ID_ANY, (u"З"))
-        self.head_10 = wx.StaticText(self, wx.ID_ANY, (u"О"))
-        self.head_11 = wx.StaticText(self, wx.ID_ANY, (u"Н"))
-        self.head_12 = wx.StaticText(self, wx.ID_ANY, (u"Ы"))
-        self.head_13 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.head_9 = wx.StaticText(self, wx.ID_ANY, (u""))
+        self.head_10 = wx.StaticText(self, wx.ID_ANY, (u"З"))
+        self.head_11 = wx.StaticText(self, wx.ID_ANY, (u"О"))
+        self.head_12 = wx.StaticText(self, wx.ID_ANY, (u"Н"))
+        self.head_13 = wx.StaticText(self, wx.ID_ANY, (u"Ы"))
         self.head_14 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.head_15 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.head_16 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.head_17 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.head_18 = wx.StaticText(self, wx.ID_ANY, (u""))
-
+        self.head_19 = wx.StaticText(self, wx.ID_ANY, (u""))
 
         self.head2_0 = wx.StaticText(self, wx.ID_ANY, (u""))
-        self.head2_1 = wx.StaticText(self, wx.ID_ANY, (u"Вход (сек.)"))
-        self.head2_2 = wx.StaticText(self, wx.ID_ANY, (u"Выход (сек.)"))
-        self.head2_3 = wx.StaticText(self, wx.ID_ANY, (u"1"))
-        self.head2_4 = wx.StaticText(self, wx.ID_ANY, (u"2"))
-        self.head2_5 = wx.StaticText(self, wx.ID_ANY, (u"3"))
-        self.head2_6 = wx.StaticText(self, wx.ID_ANY, (u"4"))
-        self.head2_7 = wx.StaticText(self, wx.ID_ANY, (u"5"))
-        self.head2_8 = wx.StaticText(self, wx.ID_ANY, (u"6"))
-        self.head2_9 = wx.StaticText(self, wx.ID_ANY, (u"7"))
-        self.head2_10 = wx.StaticText(self, wx.ID_ANY, (u"8"))
-        self.head2_11 = wx.StaticText(self, wx.ID_ANY, (u"9"))
-        self.head2_12 = wx.StaticText(self, wx.ID_ANY, (u"10"))
-        self.head2_13 = wx.StaticText(self, wx.ID_ANY, (u"11"))
-        self.head2_14 = wx.StaticText(self, wx.ID_ANY, (u"12"))
-        self.head2_15 = wx.StaticText(self, wx.ID_ANY, (u"13"))
-        self.head2_16 = wx.StaticText(self, wx.ID_ANY, (u"14"))
-        self.head2_17 = wx.StaticText(self, wx.ID_ANY, (u"15"))
-        self.head2_18 = wx.StaticText(self, wx.ID_ANY, (u"16"))
+        self.head2_1 = wx.StaticText(self, wx.ID_ANY, (u"ID Раздела"))
+        self.head2_2 = wx.StaticText(self, wx.ID_ANY, (u"Вход (сек.)"))
+        self.head2_3 = wx.StaticText(self, wx.ID_ANY, (u"Выход (сек.)"))
+        self.head2_4 = wx.StaticText(self, wx.ID_ANY, (u"1"))
+        self.head2_5 = wx.StaticText(self, wx.ID_ANY, (u"2"))
+        self.head2_6 = wx.StaticText(self, wx.ID_ANY, (u"3"))
+        self.head2_7 = wx.StaticText(self, wx.ID_ANY, (u"4"))
+        self.head2_8 = wx.StaticText(self, wx.ID_ANY, (u"5"))
+        self.head2_9 = wx.StaticText(self, wx.ID_ANY, (u"6"))
+        self.head2_10 = wx.StaticText(self, wx.ID_ANY, (u"7"))
+        self.head2_11 = wx.StaticText(self, wx.ID_ANY, (u"8"))
+        self.head2_12 = wx.StaticText(self, wx.ID_ANY, (u"9"))
+        self.head2_13 = wx.StaticText(self, wx.ID_ANY, (u"10"))
+        self.head2_14 = wx.StaticText(self, wx.ID_ANY, (u"11"))
+        self.head2_15 = wx.StaticText(self, wx.ID_ANY, (u"12"))
+        self.head2_16 = wx.StaticText(self, wx.ID_ANY, (u"13"))
+        self.head2_17 = wx.StaticText(self, wx.ID_ANY, (u"14"))
+        self.head2_18 = wx.StaticText(self, wx.ID_ANY, (u"15"))
+        self.head2_19 = wx.StaticText(self, wx.ID_ANY, (u"16"))
 
 
         self.left_1 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 1"))
@@ -382,14 +383,14 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb15_15 = wx.CheckBox(self, -1, "")
         self.cb15_16 = wx.CheckBox(self, -1, "")
 
-        self.sc1_0.SetRange(1,64000)
-        self.sc2_0.SetRange(1,64000)
-        self.sc3_0.SetRange(1,64000)
-        self.sc4_0.SetRange(1,64000)
-        self.sc5_0.SetRange(1,64000)
-        self.sc6_0.SetRange(1,64000)
-        self.sc7_0.SetRange(1,64000)
-        self.sc8_0.SetRange(1,64000)
+        self.sc1_0.SetRange(0,64000)
+        self.sc2_0.SetRange(0,64000)
+        self.sc3_0.SetRange(0,64000)
+        self.sc4_0.SetRange(0,64000)
+        self.sc5_0.SetRange(0,64000)
+        self.sc6_0.SetRange(0,64000)
+        self.sc7_0.SetRange(0,64000)
+        self.sc8_0.SetRange(0,64000)
         self.sc1_1.SetRange(0,255)
         self.sc2_1.SetRange(0,255)
         self.sc3_1.SetRange(0,255)
@@ -436,6 +437,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.head_16, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.head_17, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.head_18, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.head_19, 0, wx.ALL, 5)
 
 
         grid_sizer_1.Add(self.head2_0, 0, wx.ALL, 5)
@@ -457,6 +459,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.head2_16, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.head2_17, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.head2_18, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.head2_19, 0, wx.ALL, 5)
 
 
         grid_sizer_1.Add(self.left_1, 0, wx.ALL, 5)
@@ -881,6 +884,16 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
         #print row_int
         rq=client.write_registers(1089,row_int,unit=1)
+
+        ### ID разделов
+        ids = []
+        for item in range(1,9):
+            v = eval("self.sc%s_0.GetValue()" % item)
+            ids.append(v)
+        rq=client.write_registers(1142,ids,unit=1)
+
+
+
         client.close()
 
         Saved(self)
@@ -958,6 +971,15 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
             eval("self.sc%s_1.SetValue(enter_value)" % (i+1))
             eval("self.sc%s_2.SetValue(exit_value)" % (i+1))
+
+
+        ### ID разделов
+        rr = client.read_holding_registers(address=1142,count=8,unit=1)
+        result = rr.registers
+        t = 0
+        for item in result:
+            t = t + 1
+            eval("self.sc%s_0.SetValue(%s)" % (t,item))
 
 
 
