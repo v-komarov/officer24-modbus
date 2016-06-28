@@ -54,6 +54,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_1 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 1"))
+        self.sc1_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc1_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc1_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb1_1 = wx.CheckBox(self, -1, "")
@@ -75,6 +76,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_2 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 2"))
+        self.sc2_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc2_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc2_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb2_1 = wx.CheckBox(self, -1, "")
@@ -96,6 +98,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_3 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 3"))
+        self.sc3_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc3_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc3_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb3_1 = wx.CheckBox(self, -1, "")
@@ -117,6 +120,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_4 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 4"))
+        self.sc4_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc4_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc4_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb4_1 = wx.CheckBox(self, -1, "")
@@ -138,6 +142,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_5 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 5"))
+        self.sc5_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc5_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc5_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb5_1 = wx.CheckBox(self, -1, "")
@@ -159,6 +164,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_6 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 6"))
+        self.sc6_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc6_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc6_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb6_1 = wx.CheckBox(self, -1, "")
@@ -180,6 +186,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_7 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 7"))
+        self.sc7_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc7_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc7_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb7_1 = wx.CheckBox(self, -1, "")
@@ -201,6 +208,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         self.left_8 = wx.StaticText(self, wx.ID_ANY, (u"Раздел 8"))
+        self.sc8_0 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc8_1 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc8_2 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.cb8_1 = wx.CheckBox(self, -1, "")
@@ -221,6 +229,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb8_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_90 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_91 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_92 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_93 = wx.StaticText(self, wx.ID_ANY, (u"Входная зона"))
@@ -242,6 +251,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb9_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_100 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_101 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_102 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_103 = wx.StaticText(self, wx.ID_ANY, (u"Проходная зона"))
@@ -263,6 +273,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb10_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_110 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_111 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_112 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_113 = wx.StaticText(self, wx.ID_ANY, (u"24 часовая"))
@@ -284,6 +295,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb11_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_120 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_121 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_122 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_123 = wx.StaticText(self, wx.ID_ANY, (u"Нормально открытая"))
@@ -305,6 +317,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb12_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_130 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_131 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_132 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_133 = wx.StaticText(self, wx.ID_ANY, (u"Управление режимом охраны"))
@@ -326,6 +339,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb13_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_140 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_141 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_142 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_143 = wx.StaticText(self, wx.ID_ANY, (u"Кнопка выход"))
@@ -347,6 +361,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb14_16 = wx.CheckBox(self, -1, "")
 
 
+        self.left_150 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_151 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_152 = wx.StaticText(self, wx.ID_ANY, (u""))
         self.left_153 = wx.StaticText(self, wx.ID_ANY, (u"Внутренняя"))
@@ -367,7 +382,14 @@ class Zones(wx.aui.AuiMDIChildFrame):
         self.cb15_15 = wx.CheckBox(self, -1, "")
         self.cb15_16 = wx.CheckBox(self, -1, "")
 
-
+        self.sc1_0.SetRange(1,64000)
+        self.sc2_0.SetRange(1,64000)
+        self.sc3_0.SetRange(1,64000)
+        self.sc4_0.SetRange(1,64000)
+        self.sc5_0.SetRange(1,64000)
+        self.sc6_0.SetRange(1,64000)
+        self.sc7_0.SetRange(1,64000)
+        self.sc8_0.SetRange(1,64000)
         self.sc1_1.SetRange(0,255)
         self.sc2_1.SetRange(0,255)
         self.sc3_1.SetRange(0,255)
@@ -393,7 +415,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         p = wx.Panel(self)
 
 
-        grid_sizer_1 = wx.FlexGridSizer(18, 19, 1, 0)
+        grid_sizer_1 = wx.FlexGridSizer(18, 20, 1, 0)
 
         grid_sizer_1.Add(self.head_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.head_1, 0, wx.ALL, 5)
@@ -438,6 +460,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_1, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc1_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc1_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc1_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb1_1, 0, wx.ALL, 5)
@@ -459,6 +482,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_2, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc2_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc2_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc2_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb2_1, 0, wx.ALL, 5)
@@ -480,6 +504,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_3, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc3_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc3_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc3_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb3_1, 0, wx.ALL, 5)
@@ -501,6 +526,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_4, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc4_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc4_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc4_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb4_1, 0, wx.ALL, 5)
@@ -522,6 +548,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_5, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc5_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc5_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc5_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb5_1, 0, wx.ALL, 5)
@@ -543,6 +570,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_6, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc6_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc6_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc6_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb6_1, 0, wx.ALL, 5)
@@ -564,6 +592,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_7, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc7_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc7_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc7_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb7_1, 0, wx.ALL, 5)
@@ -585,6 +614,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
 
 
         grid_sizer_1.Add(self.left_8, 0, wx.ALL, 5)
+        grid_sizer_1.Add(self.sc8_0, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc8_1, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.sc8_2, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.cb8_1, 0, wx.ALL, 5)
@@ -605,6 +635,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb8_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_90, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_91, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_92, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_93, 0, wx.ALL, 5)
@@ -626,6 +657,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb9_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_100, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_101, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_102, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_103, 0, wx.ALL, 5)
@@ -647,6 +679,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb10_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_110, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_111, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_112, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_113, 0, wx.ALL, 5)
@@ -668,6 +701,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb11_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_120, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_121, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_122, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_123, 0, wx.ALL, 5)
@@ -689,6 +723,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb12_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_130, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_131, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_132, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_133, 0, wx.ALL, 5)
@@ -710,6 +745,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb13_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_140, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_141, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_142, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_143, 0, wx.ALL, 5)
@@ -731,6 +767,7 @@ class Zones(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.cb14_16, 0, wx.ALL, 5)
 
 
+        grid_sizer_1.Add(self.left_150, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_151, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_152, 0, wx.ALL, 5)
         grid_sizer_1.Add(self.left_153, 0, wx.ALL, 5)
