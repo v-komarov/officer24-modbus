@@ -4,6 +4,7 @@
 import	wx
 from tools import ConnectDev
 from tools import Saved
+from    tools import    Reg2Word,Word2Reg
 
 
 class Settings(wx.aui.AuiMDIChildFrame):
@@ -20,6 +21,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.label_6 = wx.StaticText(self, wx.ID_ANY, (u"Период запросов присутствия к серверу в сек"))
         self.label_7 = wx.StaticText(self, wx.ID_ANY, (u"Уровень падения сигнала модема\nдля отправки сообщения на сервер"))
         self.label_8 = wx.StaticText(self, wx.ID_ANY, (u"Уровень сигнала модема для сообщения\nниже которого будет отправлено\nсообщение на сервер"))
+        self.label_9 = wx.StaticText(self, wx.ID_ANY, (u"Ключ шифрования"))
 
         self.cb1 = wx.CheckBox(self, -1, "")
         self.sc1 = wx.SpinCtrl(self, -1, "", (30, 30))
@@ -29,6 +31,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.sc4 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc5 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc6 = wx.SpinCtrl(self, -1, "", (30, 30))
+        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
 
         self.btn = wx.Button(self, wx.ID_REFRESH)
         self.btn1 = wx.Button(self, wx.ID_SAVE)
@@ -39,7 +42,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.sc5.SetRange(5,90)
         self.sc6.SetRange(0,98)
 
-        grid_sizer_1 = wx.FlexGridSizer(9, 2, 1, 0)
+        grid_sizer_1 = wx.FlexGridSizer(10, 2, 1, 0)
 
         grid_sizer_1.Add(self.label_1, 0, wx.ALL, 10)
         grid_sizer_1.Add(self.cb1, 0, wx.ALL, 10)
@@ -64,6 +67,9 @@ class Settings(wx.aui.AuiMDIChildFrame):
 
         grid_sizer_1.Add(self.label_8, 0, wx.ALL, 10)
         grid_sizer_1.Add(self.sc6, 0, wx.ALL, 10)
+
+        grid_sizer_1.Add(self.label_9, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.text_ctrl_1, 0, wx.ALL, 10)
 
 
         grid_sizer_1.Add(self.btn, 0, wx.TOP|wx.ALIGN_RIGHT, 20)
