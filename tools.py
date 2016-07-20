@@ -230,3 +230,54 @@ def Saved(self):
     dlg.ShowModal()
     dlg.Destroy()
 
+
+
+
+### Запись ключа шифрования
+def Key2Reg(key):
+
+    reg = [0,0,0,0]
+
+    key = key.ljust(8," ")
+    key = list(key[:8])
+
+
+
+    reg[0] = int(hex(ord(key[0])) + hex(ord(key[1]))[2:],16)
+    reg[1] = int(hex(ord(key[2])) + hex(ord(key[3]))[2:],16)
+    reg[2] = int(hex(ord(key[4])) + hex(ord(key[5]))[2:],16)
+    reg[3] = int(hex(ord(key[6])) + hex(ord(key[7]))[2:],16)
+
+    return reg
+
+
+
+
+def Reg2Key(reg):
+
+    word = ""
+
+    for item in reg:
+        a = hex(item)[2:]
+        if len(a) == 1:
+
+            word = word + chr(int(hex(item)[2:].rjust(2,"0"),16))
+            word = word + chr(int("00",16))
+
+        elif len(a) == 2:
+
+            word = word + chr(int(hex(item)[2:],16))
+            word = word + chr(int("00",16))
+
+        elif len(a) == 3:
+
+            word = word + chr(int(hex(item)[2:4],16))
+            word = word + chr(int(hex(item)[4:5].rjust(2,"0"),16))
+
+        elif len(a) == 4:
+
+            word = word + chr(int(hex(item)[2:4],16))
+            word = word + chr(int(hex(item)[4:6],16))
+
+
+    return word

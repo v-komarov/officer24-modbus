@@ -4,7 +4,7 @@
 import	wx
 from tools import ConnectDev
 from tools import Saved
-from    tools import    Reg2Word,Word2Reg
+from    tools import    Reg2Key,Key2Reg
 
 
 class Settings(wx.aui.AuiMDIChildFrame):
@@ -111,6 +111,10 @@ class Settings(wx.aui.AuiMDIChildFrame):
 
         rq=client.write_registers(1138,[self.sc4.GetValue(),self.sc5.GetValue(),self.sc6.GetValue()],unit=1)
 
+        ### Ключ шифрования
+        key = self.text_ctrl_1.GetValue()
+        rq=client.write_registers(1150,Key2Reg(key),unit=1)
+
 
         client.close()
 
@@ -159,5 +163,9 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.sc5.SetValue(result[1])
         self.sc6.SetValue(result[2])
 
+        ### Ключ шифрования
+        rr = client.read_holding_registers(address=1150,count=4,unit=1)
+        result = rr.registers
+        self.text_ctrl_1.SetValue(Reg2Key(result))
 
         client.close()
