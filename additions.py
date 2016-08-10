@@ -37,6 +37,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.btn1 = wx.Button(self, wx.ID_SAVE)
 
         self.sc1.SetRange(0,9999)
+        self.sc2.SetRange(1,9999)
         self.sc3.SetRange(50,1000)
         self.sc4.SetRange(0,3600)
         self.sc5.SetRange(5,90)
