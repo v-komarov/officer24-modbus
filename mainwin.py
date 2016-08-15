@@ -4,7 +4,7 @@
 
 import wx
 import wx.aui
-import platform
+#import platform
 
 import	About
 from    additions   import  Settings
@@ -15,7 +15,7 @@ from    gsmsetting import  GSMSetting
 from    outputs     import  OutPuts
 from    searchusb import	ListUsb
 from    tools import SaveConfig, GetDev, SetDev
-from    userskeys   import  Keys,MasterKey,KeysNT
+from    userskeys   import  Keys,MasterKey
 from    zones import Zones
 
 
@@ -216,12 +216,15 @@ class MyParentFrame(wx.aui.AuiMDIParentFrame):
 
 #### Ключи
     def UserKeys(self, evt):
+        child = Keys(self)
+
+        """
         if platform.system() == 'Linux':
             child = Keys(self)
         else:
             child =  KeysNT(self)
         child.Activate()
-
+        """
 
 
 #### Мастер ключ
