@@ -81,13 +81,14 @@ class Keys(wx.aui.AuiMDIChildFrame):
 
 
     def OnTextCtrlKillFocus(self,event):
-        pass
+        self.fieldnow.SetBackgroundColour("")
         #self.fieldnow[event.GetEventObject()] = False
 
 
 
     def OnTextCtrlSetFocus(self,event):
         self.fieldnow = event.GetEventObject()
+        self.fieldnow.SetBackgroundColour("Yellow")
 
 
 
