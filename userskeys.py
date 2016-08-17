@@ -23,6 +23,7 @@ class Keys(wx.aui.AuiMDIChildFrame):
         self.btn = wx.Button(self, wx.ID_REFRESH)
         self.btn1 = wx.Button(self, wx.ID_SAVE)
         self.btn2 = wx.Button(self,-1, u"Считать ключ")
+        self.btn3 = wx.Button(self, wx.ID_CLEAR)
 
 
         sizer = wx.BoxSizer(wx.VERTICAL)
@@ -65,6 +66,7 @@ class Keys(wx.aui.AuiMDIChildFrame):
         sizer_2.Add(self.btn,0)
         sizer_2.Add(self.btn1,0)
         sizer_2.Add(self.btn2,0)
+        sizer_2.Add(self.btn3,0)
         sizer.Add(sizer_2,0, wx.ALL|wx.ALIGN_LEFT, border=20)
 
 
@@ -75,6 +77,7 @@ class Keys(wx.aui.AuiMDIChildFrame):
         self.Bind(wx.EVT_BUTTON, self.Read, self.btn)
         self.Bind(wx.EVT_BUTTON, self.Write, self.btn1)
         self.Bind(wx.EVT_BUTTON, self.ReadKey, self.btn2)
+        self.Bind(wx.EVT_BUTTON, self.ClearKey, self.btn3)
 
 
 
@@ -89,6 +92,16 @@ class Keys(wx.aui.AuiMDIChildFrame):
     def OnTextCtrlSetFocus(self,event):
         self.fieldnow = event.GetEventObject()
         self.fieldnow.SetBackgroundColour("Yellow")
+
+
+
+
+
+    def ClearKey(self,evt):
+
+        if self.fieldnow:
+            self.fieldnow.SetValue("0000000000000000")
+
 
 
 
