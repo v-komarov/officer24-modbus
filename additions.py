@@ -22,6 +22,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.label_7 = wx.StaticText(self, wx.ID_ANY, (u"Уровень падения сигнала модема\nдля отправки сообщения на сервер"))
         self.label_8 = wx.StaticText(self, wx.ID_ANY, (u"Уровень сигнала модема для сообщения\nниже которого будет отправлено\nсообщение на сервер"))
         self.label_9 = wx.StaticText(self, wx.ID_ANY, (u"Ключ шифрования"))
+        self.label_10 = wx.StaticText(self, wx.ID_ANY, (u"Передача в пакетном режиме"))
 
         self.cb1 = wx.CheckBox(self, -1, "")
         self.sc1 = wx.SpinCtrl(self, -1, "", (30, 30))
@@ -32,6 +33,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.sc5 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.sc6 = wx.SpinCtrl(self, -1, "", (30, 30))
         self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "", size=(200,-1))
+        self.cb10 = wx.CheckBox(self, -1, "")
 
         self.btn = wx.Button(self, wx.ID_REFRESH)
         self.btn1 = wx.Button(self, wx.ID_SAVE)
@@ -43,7 +45,7 @@ class Settings(wx.aui.AuiMDIChildFrame):
         self.sc5.SetRange(5,90)
         self.sc6.SetRange(0,98)
 
-        grid_sizer_1 = wx.FlexGridSizer(10, 2, 1, 0)
+        grid_sizer_1 = wx.FlexGridSizer(11, 2, 1, 0)
 
         grid_sizer_1.Add(self.label_1, 0, wx.ALL, 10)
         grid_sizer_1.Add(self.cb1, 0, wx.ALL, 10)
@@ -72,6 +74,8 @@ class Settings(wx.aui.AuiMDIChildFrame):
         grid_sizer_1.Add(self.label_9, 0, wx.ALL, 10)
         grid_sizer_1.Add(self.text_ctrl_1, 0, wx.ALL, 10)
 
+        grid_sizer_1.Add(self.label_10, 0, wx.ALL, 10)
+        grid_sizer_1.Add(self.cb10, 0, wx.ALL, 10)
 
         grid_sizer_1.Add(self.btn, 0, wx.TOP|wx.ALIGN_RIGHT, 20)
         grid_sizer_1.Add(self.btn1, 0, wx.TOP|wx.ALIGN_LEFT, 20)
@@ -115,6 +119,14 @@ class Settings(wx.aui.AuiMDIChildFrame):
         ### Ключ шифрования
         key = self.text_ctrl_1.GetValue()
         rq=client.write_registers(1150,Key2Reg(key),unit=1)
+
+
+        ### В пакетном режиме или нет ###
+        if self.cb10.GetValue():
+            rq=client.write_registers(1159,[1],unit=1)
+        else:
+            rq=client.write_registers(1159,[0],unit=1)
+
 
 
         client.close()
@@ -168,5 +180,14 @@ class Settings(wx.aui.AuiMDIChildFrame):
         rr = client.read_holding_registers(address=1150,count=4,unit=1)
         result = rr.registers
         self.text_ctrl_1.SetValue(Reg2Key(result))
+
+        ### В пакетном режиме или нет
+        rr = client.read_holding_registers(address=1159,count=1,unit=1)
+        result = rr.registers
+        if result[0] == 1:
+            self.cb10.SetValue(True)
+        else:
+            self.cb10.SetValue(False)
+
 
         client.close()
